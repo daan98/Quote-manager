@@ -1,0 +1,26 @@
+{
+  "name": "quote-manager",
+  "version": "1.0.0",
+  "description": "quote manager mini project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daan98/Quote-manager.git"
+  },
+  "keywords": [
+    "pwa",
+    "cypress"
+  ],
+  "author": "Daniel Antonio Agüero Núñez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/daan98/Quote-manager/issues"
+  },
+  "homepage": "https://github.com/daan98/Quote-manager#readme",
+  "devDependencies": {
+    "cypress": "^10.0.2"
+  }
+}

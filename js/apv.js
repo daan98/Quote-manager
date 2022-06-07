@@ -7,20 +7,6 @@ const sintomasInput = document.querySelector('#sintomas');
 const contenedorCitas = document.querySelector('#citas');// Contenedor para las citas
 const formulario = document.querySelector('#nueva-cita');// Formulario nuevas citas
 const heading = document.querySelector('#administra');// Heading
-let editando = false;
-
-// Eventos
-formulario.addEventListener('submit', nuevaCita);
-eventListeners();
-function eventListeners() {
-    mascotaInput.addEventListener('change', datosCita);
-    propietarioInput.addEventListener('change', datosCita);
-    telefonoInput.addEventListener('change', datosCita);
-    fechaInput.addEventListener('change', datosCita);
-    horaInput.addEventListener('change', datosCita);
-    sintomasInput.addEventListener('change', datosCita);
-}
-
 const citaObj = {
     mascota: '',
     propietario: '',
@@ -29,10 +15,23 @@ const citaObj = {
     hora:'',
     sintomas: ''
 }
+let editando = false;
+
+// Eventos
+formulario.addEventListener('submit', nuevaCita);
+eventListeners();
+function eventListeners(e) {
+    mascotaInput.addEventListener('change', datosCita);
+    propietarioInput.addEventListener('change', datosCita);
+    telefonoInput.addEventListener('change', datosCita);
+    fechaInput.addEventListener('change', datosCita);
+    horaInput.addEventListener('change', datosCita);
+    sintomasInput.addEventListener('change', datosCita);
+}
 
 function datosCita(e) {
-    //  console.log(e.target.name) // Obtener el Input
-     citaObj[e.target.name] = e.target.value;
+    // console.log(e.target.value) // Obtener el Input
+    citaObj[e.target.name] = e.target.value;
 }
 
 // CLasses
@@ -61,6 +60,9 @@ class UI {
         // Crea el div
         const divMensaje = document.createElement('div');
         divMensaje.classList.add('text-center', 'alert', 'd-block', 'col-12');
+
+        // data-cy
+        divMensaje.dataset.cy = 'alert';
         
         // Si es de tipo error agrega una clase
         if(tipo === 'error') {
@@ -115,12 +117,14 @@ class UI {
 
             // Agregar un botón de eliminar...
             const btnEliminar = document.createElement('button');
+            btnEliminar.dataset.cy = "delete-button";
             btnEliminar.onclick = () => eliminarCita(id); // añade la opción de eliminar
             btnEliminar.classList.add('btn', 'btn-danger', 'mr-2');
             btnEliminar.innerHTML = 'Eliminar <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>';
 
             // Añade un botón de editar...
             const btnEditar = document.createElement('button');
+            btnEditar.dataset.cy = "update-button";
             btnEditar.onclick = () => cargarEdicion(cita);
 
             btnEditar.classList.add('btn', 'btn-info');
@@ -165,7 +169,7 @@ function nuevaCita(e) {
 
     // Validar
     if( mascota === '' || propietario === '' || telefono === '' || fecha === ''  || hora === '' || sintomas === '' ) {
-        ui.imprimirAlerta('Todos los mensajes son Obligatorios', 'error');
+        ui.imprimirAlerta('Todos los campos son Obligatorios', 'error');
         return;
     }
 

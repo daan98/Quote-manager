@@ -7,6 +7,7 @@ this project use:
 
 - Modules
 - PWA
+- Cypress (test)
 
 Initial commit with message **"First commit"** use *modules*
 
